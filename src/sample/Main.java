@@ -2,20 +2,7 @@ package sample;
 
 public class Main {
         public static void main(String[] args) {
-//
-//                deck = new ArrayList<Card>();
-//                counter = 0;
-//                for (int i = 0; i < Card.SUITS.length; i++) {
-//                    for (int j = 0; j < Card.FACES.length; j++) {
-//                        deck.add(new Card(Card.FACES[j], Card.SUITS[i]));
-//                        counter = counter + 1; // also can be written as counter++;
-//                        //deck.add(new Card(Card.FACES[j % 4], Card.SUITS[i % 2]));
-//                    }
-//                }
-//                counter = 0
-//                for (int i = 0; i < 4; i++) {
-//                    counter++
-//                }
+
 //            String oneCard = "2 of Hearts";
 //            String twoCard = "3 of Hearts";
 //            String threeCard = "4 of Hearts";
@@ -140,22 +127,14 @@ public class Main {
             for (int i = 0; i < 52; i++) {
                 deck[i] = i + 1;
             }
+
+            String[] SUITS = {"Hearts", "Club", "Diamond", "Spade"};
+            String[] VALUES = {"Ace", "2", "3", "4", "5", "6", "7",
+                                            "8", "9", "10", "Jack", "Queen", "King"};
             for (int i = 0; i < 52; i++) {
                 String suit = " ", value = " ";
-                if (deck[i] / 13 == 0) {
-                    suit = "Hearts";
-                } else if (deck[i] / 13 == 1) {
-                    suit = "Club";
-                } else if (deck[i] / 13 == 2) {
-                    suit = "Diamond";
-                } else if (deck[i] / 13 == 3) {
-                    suit = "Spade";
-                }
-                if (deck[i] %  13 == 0) {
-                    value = "Ace";
-                } else if (deck[i] % 13 == 1) {
-                    value = "2";
-                }
+                suit = SUITS[i / 13];
+                value = VALUES[i % 13];
                 System.out.println(value + " of " + suit);
             }
         }
