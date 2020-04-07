@@ -14,6 +14,8 @@ public class Main {
         // 5. Dealer does the hittings
         // 6. Either give a win screen or lose screen. Be sure to either take away money or give money bet
         Phase phase = Phase.TITLESCREEN;
+        int playerMoneyAmount = 5000;
+        int bet = 0;
         while (1 > 0) {
             switch(phase) {
                 case TITLESCREEN:
@@ -21,7 +23,7 @@ public class Main {
                     phase = Phase.BETTINGSCREEN;
                     break;
                 case BETTINGSCREEN:
-                    executeBettingScreen();
+                    bet = executeBettingScreen(playerMoneyAmount);
                     phase = Phase.INITIATESCREEN;
                     break;
                 case INITIATESCREEN:
@@ -37,7 +39,7 @@ public class Main {
                     phase = Phase.RESULTSSCREEN;
                     break;
                 case RESULTSSCREEN:
-                    resultsPhase();
+                    resultsPhase(bet, playerMoneyAmount);
                     phase = Phase.BETTINGSCREEN;
                     break;
                 }
@@ -54,8 +56,14 @@ public class Main {
     /**
      * Initialize the betting screen
      */
-    public static void executeBettingScreen() {
+    public static int executeBettingScreen(int playerMoneyAmount) {
         // insert code here
+        //
+        System.out.println("Place your bet");
+        System.out.println("Bet has to be between $100 - " + playerMoneyAmount);
+        // figure out to insert values within console;
+        int bet = 50;
+
     }
 
     /**
@@ -88,7 +96,11 @@ public class Main {
     /**
      * Either give a winning screen or losing screen
      */
-    public static void resultsPhase() {
+    public static void resultsPhase(int bet, int playerMoneyAmount) {
+        // if player wins
+        playerMoneyAmount += bet;
+        // else
+        playerMoneyAmount -= bet;
         // insert code here
     }
 }
