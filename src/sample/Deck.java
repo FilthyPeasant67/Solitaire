@@ -16,15 +16,15 @@ public class Deck {
         }
     }
 
-//    public Card getCardAt(int index) {
-//        if (withinBounds(index)) {
-//            return deck.get(index);
-//        }
-//        return null;
-//    }
+    public Card getCardAt(int index) {
+        if (withinBounds(index)) {
+            return deck.get(index);
+        }
+        return null;
+    }
 
-//    private boolean withinBounds(int i) {
-//        return (i >= 0 && i < deck.size());
-//    }
+    private boolean withinBounds(int i) {
+        return (i >= 0 && i < deck.size());
+    }
 
 }
