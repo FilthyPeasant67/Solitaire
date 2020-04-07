@@ -30,13 +30,32 @@ public class Main {
                     playerPhase();
                     phase = 5; // either 5 or 6
                 } else if (phase == 5) {
-                    CPUPhase();
+                    cpuPhase();
                     phase = 6;
                 } else if (phase == 6) {
-                    resultsPage();
+                    resultsPhase();
                     phase = 2;
                 }
             }
+        }
+
+        public static void executeTitleScreen() {
+            // insert code here
+        }
+        public static void executeBettingScreen() {
+            // insert code here
+        }
+        public static void initiateBlackjack() {
+            // insert code here
+        }
+        public static void playerPhase() {
+            // insert code here
+        }
+        public static void cpuPhase() {
+            // insert code here
+        }
+        public static void resultsPhase() {
+            // insert code here
         }
     }
 
