@@ -1,5 +1,9 @@
 package sample;
 
+enum Phase {
+    TITLESCREEN, BETTINGSCREEN, INITIATESCREEN, PLAYERSCREEN,
+    CPUSCREEN, RESULTSSCREEN
+}
 public class Main {
     public static void main(String[] args) {
         // Main logic for blackjack
@@ -9,32 +13,32 @@ public class Main {
         // 4. Determine whether to hit, split, hold, double, insurance
         // 5. Dealer does the hittings
         // 6. Either give a win screen or lose screen. Be sure to either take away money or give money bet
-        int phase = 1;
+        Phase phase = Phase.TITLESCREEN;
         while (1 > 0) {
             switch(phase) {
-                case 1:
+                case TITLESCREEN:
                     executeTitleScreen();
-                    phase = 2;
+                    phase = Phase.BETTINGSCREEN;
                     break;
-                case 2:
+                case BETTINGSCREEN:
                     executeBettingScreen();
-                    phase = 3;
+                    phase = Phase.INITIATESCREEN;
                     break;
-                case 3:
+                case INITIATESCREEN:
                     initiateBlackjack();
-                    phase = 4;
+                    phase = Phase.PLAYERSCREEN;
                     break;
-                case 4:
+                case PLAYERSCREEN:
                     playerPhase();
-                    phase = 5; // either 5 or 6
+                    phase = Phase.CPUSCREEN; // either 5 or 6
                     break;
-                case 5:
+                case CPUSCREEN:
                     cpuPhase();
-                    phase = 6;
+                    phase = Phase.RESULTSSCREEN;
                     break;
-                case 6:
+                case RESULTSSCREEN:
                     resultsPhase();
-                    phase = 2;
+                    phase = Phase.BETTINGSCREEN;
                     break;
                 }
             }
