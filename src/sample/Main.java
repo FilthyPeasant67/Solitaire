@@ -4,6 +4,10 @@ enum Phase {
     TITLESCREEN, BETTINGSCREEN, INITIATESCREEN, PLAYERSCREEN,
     CPUSCREEN, RESULTSSCREEN
 }
+
+/** You may need to look into pass by val vs pass by ref **/
+/** Need to determine how to pass in values within the console **/
+
 public class Main {
     public static void main(String[] args) {
         // Main logic for blackjack
