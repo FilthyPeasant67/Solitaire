@@ -1,4 +1,6 @@
 package sample;
+import java.util.Scanner;
+import java.util.Random;
 
 enum Phase {
     TITLESCREEN, BETTINGSCREEN, INITIATESCREEN, PLAYERSCREEN,
@@ -18,8 +20,11 @@ public class Main {
         // 5. Dealer does the hittings
         // 6. Either give a win screen or lose screen. Be sure to either take away money or give money bet
         Phase phase = Phase.TITLESCREEN;
-        int playerMoneyAmount = 5000;
+        int wallet = 5000;
         int bet = 0;
+        int[] playerHand = new int[10];
+        int[] dealerHand = new int [10];
+        Situation situation = new Situation(playerHand, dealerHand);
         while (1 > 0) {
             switch(phase) {
                 case TITLESCREEN:
@@ -27,11 +32,13 @@ public class Main {
                     phase = Phase.BETTINGSCREEN;
                     break;
                 case BETTINGSCREEN:
-                    bet = executeBettingScreen(playerMoneyAmount);
+                    bet = executeBettingScreen(wallet);
                     phase = Phase.INITIATESCREEN;
                     break;
                 case INITIATESCREEN:
-                    initiateBlackjack();
+                    situation = initiateBlackjack();
+                    playerHand = situation.playerHand;
+                    dealerHand = situation.dealerHand;
                     phase = Phase.PLAYERSCREEN;
                     break;
                 case PLAYERSCREEN:
@@ -43,7 +50,7 @@ public class Main {
                     phase = Phase.RESULTSSCREEN;
                     break;
                 case RESULTSSCREEN:
-                    resultsPhase(bet, playerMoneyAmount);
+                    resultsPhase(bet, wallet);
                     phase = Phase.BETTINGSCREEN;
                     break;
                 }
@@ -55,32 +62,58 @@ public class Main {
      */
     public static void executeTitleScreen() {
             // insert code here
+        System.out.println("Welcome to Blackjack!");
     }
 
     /**
      * Initialize the betting screen
      */
-    public static int executeBettingScreen(int playerMoneyAmount) {
+    public static int executeBettingScreen(int wallet) {
         // insert code here
         //
         System.out.println("Place your bet");
-        System.out.println("Bet has to be between $100 - " + playerMoneyAmount);
-        // figure out to insert values within console;
-        int bet = 50;
+        System.out.println("Bet has to be between $0 - " + wallet);
+        Scanner playerBet = new Scanner(System.in);
 
+        int bet = playerBet.nextInt();
+        System.out.println("You've entered $" +bet);
+
+
+    return bet;
     }
 
     /**
      * have dealer give two cards to himself and you
      */
-    public static void initiateBlackjack() {
-        Deck deck = new Deck();
-//        shuffleDeck(deck);
+    public static Situation initiateBlackjack() {
+
         /** Give CPU card **/
-        /** Give Player card **/
-        /** Give CPU another card **/
-        /** Give Player card **/
-        // insert code here
+        int dealerHand[] = new int[10];
+        int playerHand[] = new int[10];
+
+        for (int i = 0; i < 4; i++) {
+            boolean newCardDrawn = false;
+            int card = 1;
+            while(newCardDrawn == false) {
+                Random rand = new Random();
+                card = rand.nextInt(52) + 1;
+                if (dealerHand[0] == card || dealerHand[1] == card) {}
+                else if (playerHand[0] == card || playerHand[1] == card) {}
+                else { newCardDrawn = true; }
+            }
+
+            // check to see if card has already been drawn
+            if (i % 2 == 0) { // if remainder = 0
+                int index = i / 2;
+                dealerHand[index] = card;
+            } else {
+                int index = i / 2;
+                playerHand[index] = card;
+            }
+        }
+        Situation situation = new Situation(playerHand, dealerHand);
+        return situation;
+
     }
 
     /**
@@ -100,11 +133,11 @@ public class Main {
     /**
      * Either give a winning screen or losing screen
      */
-    public static void resultsPhase(int bet, int playerMoneyAmount) {
+    public static void resultsPhase(int bet, int wallet) {
         // if player wins
-        playerMoneyAmount += bet;
+        wallet += bet;
         // else
-        playerMoneyAmount -= bet;
+        wallet -= bet;
         // insert code here
     }
 }
